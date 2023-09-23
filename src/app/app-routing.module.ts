@@ -7,7 +7,7 @@ import { CadastroResidenciasComponent } from './pages/cadastro-residencias/cadas
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'catalogo', component: CatalogoComponent },
-  { path: 'cadastrar', component: CadastroResidenciasComponent},
+  { path: 'cadastrar', component: CadastroResidenciasComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 

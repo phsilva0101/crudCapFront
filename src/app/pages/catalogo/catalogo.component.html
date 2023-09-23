@@ -1,7 +1,7 @@
 <div class="catalog-container">
     <h1 class="title">Catálogo</h1>
     <div class="filter">
-        <button  (click)="openFilterModal()"><i class="fa-solid fa-filter"></i> Filtrar</button>
+        <button mat-raised-button (click)="openFilterModal()"><i class="fa-solid fa-filter"></i> Filtrar</button>
     </div>
     
     <div *ngFor="let residence of residences" class="residence-card">
