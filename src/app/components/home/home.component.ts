@@ -9,15 +9,15 @@ export class HomeComponent implements OnInit {
 
   cards = [
     {
-      icon: 'caminho-para-o-icone-1',
+      icon: 'fab fa-linkedin fa-2x',
       description: 'Descrição do Card 1'
     },
     {
-      icon: 'caminho-para-o-icone-2',
+      icon: 'fas fa-car',
       description: 'Descrição do Card 2'
     },
     {
-      icon: 'caminho-para-o-icone-3',
+      icon: 'fas fa-camera',
       description: 'Descrição do Card 3'
     }
   ];

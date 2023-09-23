@@ -9,8 +9,8 @@ export class SidebarComponent implements OnInit {
 
   menuItems = [
     { nome: 'Home', rota: '/home' },
-    { nome: 'Sobre Nós', rota: '/sobre-nos' },
-    { nome: 'Catálogo', rota: '/catalogo' }
+    { nome: 'Catálogo', rota: '/catalogo' },
+    { nome: 'Cadastrar', rota: '/cadastrar' },
   ];
   
   constructor() { }

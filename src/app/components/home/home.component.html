@@ -1,18 +1,21 @@
 <div class="home-container">
-    <img class="intro-image" src="../../../assets/foto1.jpg" alt="Imagem de Introdução" />
-  
-    <section class="about-us">
-      <h2>Sobre Nós</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-    </section>
-  
-    <div class="cards-container">
-      <div class="card" *ngFor="let card of cards">
-        <div class="icon-container">
-          <img [src]="card.icon" alt="Ícone do Card" />
-        </div>
-        <p>{{ card.description }}</p>
+  <img
+    class="intro-image"
+    src="../../../assets/foto1.jpg"
+    alt="Imagem de Introdução"
+  />
+
+  <section class="about-us">
+    <h2>Sobre Nós</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+  </section>
+
+  <div class="cards-container">
+    <div class="card" *ngFor="let card of cards">
+      <div class="icon-container">
+        <i class="icon" ngClass="{{ card.icon }}"></i>
       </div>
+      <p>{{ card.description }}</p>
     </div>
   </div>
-  
+</div>
