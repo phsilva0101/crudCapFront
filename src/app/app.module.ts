@@ -20,6 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpInterceptorService } from './hooks/useHttpInterceptor';
 import { MatCardModule } from '@angular/material/card';
+import { CurrencyMaskModule } from "ng2-currency-mask";
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { MatCardModule } from '@angular/material/card';
     BrowserAnimationsModule,
     MatButtonModule,
     HttpClientModule,
+    CurrencyMaskModule,
   ],
   providers: [
     // {

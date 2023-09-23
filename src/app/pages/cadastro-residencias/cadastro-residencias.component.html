@@ -1,37 +1,152 @@
-<form class="form-container" [formGroup]="form">
-  <mat-grid-list cols="3" rowHeight="4em">
-    <mat-grid-tile>
-      <mat-form-field appearance="fill">
-        <mat-label>Description</mat-label>
-        <input matInput formControlName="description" />
-      </mat-form-field>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <mat-form-field appearance="fill">
-        <mat-label>Value</mat-label>
-        <input matInput formControlName="value" type="number" />
-      </mat-form-field>
-    </mat-grid-tile>
-    <!-- Outros campos de Residences aqui... -->
-  </mat-grid-list>
+<h1 class="title">Catálogo</h1>
 
-  <mat-grid-list cols="2" rowHeight="4em">
-    <mat-grid-tile>
-      <mat-form-field appearance="fill">
-        <mat-label>Street</mat-label>
-        <input matInput formControlName="street" />
-      </mat-form-field>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <mat-form-field appearance="fill">
-        <mat-label>Neighborhood</mat-label>
-        <input matInput formControlName="neighborhood" />
-      </mat-form-field>
-    </mat-grid-tile>
-    <!-- Outros campos de Address aqui... -->
-  </mat-grid-list>
+<form class="form-container" [formGroup]="form">
+  <fieldset>
+    <legend>Residences</legend>
+    <!-- Legend para a seção Residences -->
+    <div class="row">
+      <div class="col-md-4">
+        <mat-form-field appearance="fill" class="custom-input-size">
+          <mat-label>Description</mat-label>
+          <input matInput formControlName="description" />
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="fill" class="custom-input-size">
+          <mat-label>Value</mat-label>
+          <input
+            matInput
+            currencyMask
+            [options]="{ prefix: 'R$', thousands: '.', decimal: ',' }"
+            formControlName="value"
+            class="right-align"
+            placeholder="Ex. R$ 120.00"
+            value=""
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="fill" class="custom-input-size">
+          <mat-label>Property Type</mat-label>
+          <mat-select panelClass="panel-select" formControlName="propertyType">
+            <mat-option *ngFor="let type of propertyTypes" [value]="type.value">
+              {{ type.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <mat-form-field appearance="fill" class="custom-input-size">
+          <mat-label>Rooms</mat-label>
+          <input matInput formControlName="rooms" type="number" />
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-4">
+        <mat-form-field appearance="fill" class="custom-input-size">
+          <mat-label>Suites</mat-label>
+          <input matInput formControlName="suites" type="number" />
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="fill" class="custom-input-size">
+          <mat-label>Area M2</mat-label>
+          <input
+            matInput
+            formControlName="areaM2"
+            class="right-align"
+            type="number"
+          />
+          <span matSuffix>m²</span>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4" *ngIf="form.get('hasGarage')?.value">
+        <mat-form-field appearance="fill" class="custom-input-size">
+          <mat-label>Garages Spaces</mat-label>
+          <input matInput formControlName="garageSpaces" type="number" />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <mat-slide-toggle formControlName="hasGarage" color="primary">
+          Has Garage?
+        </mat-slide-toggle>
+      </div>
+
+      <div class="col-md-4">
+        <mat-slide-toggle formControlName="hasPool" color="primary">
+          Has Pool?
+        </mat-slide-toggle>
+      </div>
+
+      <div class="col-md-4">
+        <mat-slide-toggle formControlName="isParticular" color="primary">
+          Is Particular?
+        </mat-slide-toggle>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Address</legend>
+    <!-- Legend para a seção Address -->
+    <div class="row">
+      <div class="col-md-4">
+        <mat-form-field appearance="fill" class="custom-input-size">
+          <mat-label>ZipCode</mat-label>
+          <input matInput formControlName="zipCode" />
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-4">
+        <button
+          mat-raised-button
+          class="button-zipCode"
+          color="primary"
+          type="submit"
+        >
+          Buscar
+        </button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <mat-form-field appearance="fill" class="custom-input-size">
+          <mat-label>Street</mat-label>
+          <input matInput formControlName="street" />
+        </mat-form-field>
+      </div>
+      <div class="col-md-2">
+        <mat-form-field appearance="fill" class="custom-input-size">
+          <mat-label>Number</mat-label>
+          <input matInput formControlName="number" />
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-form-field appearance="fill" class="custom-input-size">
+          <mat-label>Neighborhood</mat-label>
+          <input matInput formControlName="neighborhood" />
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-form-field appearance="fill" class="custom-input-size">
+          <mat-label>Complement</mat-label>
+          <input matInput formControlName="complement" />
+        </mat-form-field>
+      </div>
+    </div>
+  </fieldset>
 
   <div class="button-container">
-    <button mat-raised-button color="primary" type="submit">Submit</button>
+    <button mat-raised-button (click)="save()" color="primary" class="submit-button" type="submit">Submit</button>
   </div>
 </form>

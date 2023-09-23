@@ -1,5 +1,61 @@
-.form-container {
-    display: flex;
-    margin-top: 2rem;
-    width: 100%;
+.title {
+  color: #cd5d67;
+}
+
+.submit-button {
+  background-color: #421820;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+  margin-right: 1rem;
+}
+
+.custom-input-size {
+  width: 100%;
+}
+
+.custom-input-size .mat-form-field-flex {
+  padding: 0.5em 0em;
+}
+
+.custom-input-size .mat-form-field-infix {
+  padding: 0em 0.5em;
+}
+
+fieldset {
+  border: 1px dotted #cd5d67;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+legend {
+  font-size: 1.3rem;
+  color: #cd5d67;
+  width: auto;
+  padding: 0;
+}
+
+.right-align {
+  text-align: right;
+}
+
+input.right-align::-webkit-outer-spin-button,
+input.right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+input.right-align {
+  -moz-appearance: textfield;
+}
+
+::ng-deep .panel-select {
+  transform: translateY(35px) !important;
+}
+
+.button-zipCode {
+  margin-top: 1rem;
+  background-color: #421820;
 }

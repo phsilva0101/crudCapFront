@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { EnumPropertyType } from 'src/app/enum/propertyType';
+import { PropertiesService } from 'src/app/services/properties.service';
 
 @Component({
   selector: 'app-cadastro-residencias',
@@ -8,7 +10,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class CadastroResidenciasComponent implements OnInit {
   form: FormGroup;
-  constructor(private fb: FormBuilder) {
+  propertyTypes = Object.keys(EnumPropertyType).map((key) => ({
+    value: key,
+    viewValue: EnumPropertyType[key as keyof typeof EnumPropertyType],
+  }));
+  constructor(private fb: FormBuilder, private service: PropertiesService) {
     this.form = this.fb.group({
       description: ['', Validators.required],
       value: ['', Validators.required],
@@ -16,7 +22,7 @@ export class CadastroResidenciasComponent implements OnInit {
       rooms: ['', Validators.required],
       suites: ['', Validators.required],
       hasGarage: [false],
-      garageSpaces: [''],
+      garageSpaces: [{ value: '' }, [Validators.min(1)]],
       areaM2: ['', Validators.required],
       hasPool: [false],
       isParticular: [false],
@@ -31,4 +37,11 @@ export class CadastroResidenciasComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  save() {
+    console.log(this.form.value);
+    this.service.postProperty(this.form.value).subscribe((response) => {
+      alert('Imóvel cadastrado com sucesso!')
+    });
+  }
 }
