@@ -19,6 +19,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpInterceptorService } from './hooks/useHttpInterceptor';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { HttpInterceptorService } from './hooks/useHttpInterceptor';
     MatSlideToggleModule,
     MatInputModule,
     MatSliderModule,
+    MatCardModule,
     ReactiveFormsModule,
     MatGridListModule,
     BrowserAnimationsModule,
@@ -44,12 +46,11 @@ import { HttpInterceptorService } from './hooks/useHttpInterceptor';
     HttpClientModule,
   ],
   providers: [
-    { provide: 'BASE_API_URL', useValue: 'https://localhost:7094' },
-    {
-      provide: 'HTTP_INTERCEPTORS',
-      useClass: HttpInterceptorService,
-      multi: true,
-    },
+    // {
+    //   provide: 'HTTP_INTERCEPTORS',
+    //   useClass: HttpInterceptorService,
+    //   multi: true,
+    // },
   ],
   bootstrap: [AppComponent],
 })

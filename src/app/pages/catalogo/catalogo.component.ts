@@ -1,6 +1,10 @@
+import { PaginationResponse } from './../../interfaces/paginationResponse';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { FilterComponent } from 'src/app/components/filter/filter.component';
+import { PropertiesRequestModel } from 'src/app/interfaces/Property/request/properties';
+import { PropertiesResponseModel } from 'src/app/interfaces/Property/response/propertiesResponse';
+import { PropertiesService } from 'src/app/services/properties.service';
 
 @Component({
   selector: 'app-catalogo',
@@ -8,20 +12,25 @@ import { FilterComponent } from 'src/app/components/filter/filter.component';
   styleUrls: ['./catalogo.component.css'],
 })
 export class CatalogoComponent implements OnInit {
-  residences = [
-    {
-      image: '../../../assets/foto1.jpg',
-      price: 'R$ 500.000',
-      bedrooms: 3,
-      sqMeters: 120,
-      location: 'São Paulo, SP',
-    },
-    // ... outros objetos de residências
-  ];
+  residences!: PaginationResponse<PropertiesResponseModel>
+  filters: PropertiesRequestModel = {
+    pageNumber: 1,
+    pageSize: 10,
+    asc: true,
+    orderBy: 'createdAt',
+  };
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private service: PropertiesService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getAllResidencesCatalog();
+  }
+
+  getAllResidencesCatalog(){
+    this.service.getProperties(this.filters).subscribe((residences) => {
+      this.residences = residences;
+    });
+  }
 
   openFilterModal() {
     console.log('Abrindo modal de filtro');

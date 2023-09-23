@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+  }
+  
+  /* Define o estilo da sidebar */
+  app-sidebar {
+    width: 23%; 
+  }
+  
+  main {
+    flex-grow: 1; 
+  }
+  

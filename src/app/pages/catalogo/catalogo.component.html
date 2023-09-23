@@ -1,19 +1,34 @@
 <div class="catalog-container">
-    <h1 class="title">Catálogo</h1>
-    <div class="filter">
-        <button mat-raised-button (click)="openFilterModal()"><i class="fa-solid fa-filter"></i> Filtrar</button>
-    </div>
-    
-    <div *ngFor="let residence of residences" class="residence-card">
-      <img [src]="residence.image" alt="Imagem da Residência" />
+  <h1 class="title">Catálogo</h1>
+  <div class="filter">
+    <button mat-raised-button (click)="openFilterModal()">
+      <i class="fa-solid fa-filter"></i> Filtrar
+    </button>
+  </div>
+
+  <div *ngIf="residences.items.length > 0; else noResidences">
+    <ng-container
+      *ngFor="let residence of residences.items"
+      class="residence-card"
+    >
+      <img
+        src="../../../assets/foto1.jpg"
+        alt="Imagem da Residência"
+      />
       <div class="residence-info">
-        <span class="price">{{ residence.price }}</span>
+        <span class="price">{{ residence?.value }}</span>
         <div class="details">
-          <div class="info-item">Quartos: {{ residence.bedrooms }} </div>
-          <div class="info-item">M²: {{ residence.sqMeters }} m²</div>
-          <div class="info-item">{{ residence.location }}</div>
+          <div class="info-item">Quartos: {{ residence?.rooms }}</div>
+          <div class="info-item">M²: {{ residence?.areaM2 }} m²</div>
+          <div class="info-item">{{ residence?.city?.name }}</div>
         </div>
       </div>
-    </div>
+    </ng-container>
   </div>
-  
+</div>
+
+<ng-template #noResidences>
+  <div class="no-residences">
+    <h2>Não Há registros para ser mostrado.</h2>
+  </div>
+</ng-template>

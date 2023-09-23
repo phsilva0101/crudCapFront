@@ -1,76 +1,93 @@
 .catalog-container {
-    text-align: center;
-    margin-left: 23%;
-    margin-right: 1rem;
-  }
-  
-  .residence-card {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    padding: 1rem;
-    border-radius: 20px;
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .residence-card img {
-    width: 300px; 
-    height: 200px; 
-    object-fit: cover;
-    border-radius: 5px;
-  }
-  
-  .residence-info {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    flex-grow: 1;
-    padding-left: 1rem;
-    margin-top: 1rem;
-  }
-  
-  .price {
-    font-weight: bold;
-    font-size: 1.5rem;
-  }
+  text-align: center;
+  margin-right: 1rem;
+}
 
-  .info-item{
-    margin-top: 1rem;
-  }
-  
-  .details {
-    margin-top: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-  }
+.residence-card {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  border-radius: 20px;
+  transition: transform 0.3s ease-in-out;
+}
 
-  .residence-card:hover {
-    transform: scale(1.02); 
-  }
+.residence-card img {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+}
 
-  .filter   {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-bottom: 1rem;
-    margin-right: 1rem;
-  }
+.residence-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex-grow: 1;
+  padding-left: 1rem;
+  margin-top: 1rem;
+}
 
-  .filter button {
-    background-color: #410B13 ;
-    color: white;
-    height: 47px;
-    width: 120px;
-    cursor: pointer;
-    border-radius: 5px;
-  }
+.price {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
 
-  .filter button i {
-    margin-right: 5px;
-  }
-  
-  .cdk-overlay-container {
-    z-index: 1000 !important;
-  }
+.info-item {
+  margin-top: 1rem;
+}
+
+.details {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.residence-card:hover {
+  transform: scale(1.02);
+}
+
+.filter {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+}
+
+.filter button {
+  background-color: #410b13;
+  color: white;
+  height: 47px;
+  width: 120px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.filter button i {
+  margin-right: 5px;
+}
+
+.filter button:hover {
+  background-color: #cd5d67;
+}
+
+.cdk-overlay-container {
+  z-index: 1000 !important;
+}
+
+.no-residences {
+  text-align: center;
+  margin-top: 2rem;
+  color: #cd5d67;
+  font-weight: 600;
+}
+
+.title {
+  color: #cd5d67;
+  display: flex;
+  align-items: flex-start;
+  margin-left: 1rem;
+}
