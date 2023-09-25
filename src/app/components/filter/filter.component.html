@@ -1,17 +1,97 @@
-<h2 mat-dialog-title>yeste</h2>
+<h1 class="title">Filtros</h1>
 
-<mat-dialog-content [formGroup]="form">
-  
-    <mat-form-field>
-        <input matInput
-                placeholder="Course Description"
-               formControlName="description">
-    </mat-form-field>
-      ....
- 
+<mat-dialog-content class="form-container" [formGroup]="form">
+  <fieldset>
+    <legend>Residences</legend>
+    <div class="row">
+      <div class="col-md-4">
+        <mat-form-field appearance="fill" class="custom-input-size">
+          <mat-label>Value Start</mat-label>
+          <input
+            matInput
+            currencyMask
+            [options]="{ prefix: 'R$', thousands: '.', decimal: ',' }"
+            formControlName="valueStart"
+            class="right-align"
+            placeholder="Ex. R$ 120.00"
+            value=""
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="fill" class="custom-input-size">
+          <mat-label>Value End</mat-label>
+          <input
+            matInput
+            currencyMask
+            [options]="{ prefix: 'R$', thousands: '.', decimal: ',' }"
+            formControlName="valueEnd"
+            class="right-align"
+            placeholder="Ex. R$ 520.00"
+            value=""
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="fill" class="custom-input-size">
+          <mat-label>Property Type</mat-label>
+          <mat-select panelClass="panel-select" formControlName="propertyType">
+            <mat-option *ngFor="let type of propertyTypes" [value]="type.value">
+              {{ type.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <mat-form-field appearance="fill" class="custom-input-size">
+          <mat-label>Rooms</mat-label>
+          <input matInput formControlName="rooms" type="number" />
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-4">
+        <mat-form-field appearance="fill" class="custom-input-size">
+          <mat-label>Suites</mat-label>
+          <input matInput formControlName="suites" type="number" />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4" *ngIf="form.get('hasGarage')?.value">
+        <mat-form-field appearance="fill" class="custom-input-size">
+          <mat-label>Garages Spaces</mat-label>
+          <input matInput formControlName="garageSpaces" type="number" />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <mat-slide-toggle formControlName="hasGarage" color="primary">
+          Has Garage?
+        </mat-slide-toggle>
+      </div>
+
+      <div class="col-md-4">
+        <mat-slide-toggle formControlName="hasPool" color="primary">
+          Has Pool?
+        </mat-slide-toggle>
+      </div>
+
+      <div class="col-md-4">
+        <mat-slide-toggle formControlName="isParticular" color="primary">
+          Is Particular?
+        </mat-slide-toggle>
+      </div>
+    </div>
+  </fieldset>
 </mat-dialog-content>
 
 <mat-dialog-actions>
-    <button class="mat-raised-button">Close</button>
-    <button class="mat-raised-button mat-primary">Save</button>
+  <button class="mat-raised-button" (click)="close()">Close</button>
+  <button class="mat-raised-button mat-primary" (click)="onSubmit()">Save</button>
 </mat-dialog-actions>

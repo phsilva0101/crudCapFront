@@ -36,6 +36,10 @@ export class PropertiesService {
   }
 
   deleteProperty(id: number): Observable<any> {
-    return this.http.delete(`${BASE_URL}/properties/${id}`);
+    return this.http.delete(`${BASE_URL}/properties/inativar/${id}`);
+  }
+
+  getAddressByZipCode(zipCode: string): Observable<any> {
+    return this.http.get<any>(`https://viacep.com.br/ws/${zipCode}/json/`);
   }
 }

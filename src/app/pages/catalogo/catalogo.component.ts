@@ -1,10 +1,13 @@
 import { PaginationResponse } from './../../interfaces/paginationResponse';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confirm-dialog.component';
 import { FilterComponent } from 'src/app/components/filter/filter.component';
 import { PropertiesRequestModel } from 'src/app/interfaces/Property/request/properties';
 import { PropertiesResponseModel } from 'src/app/interfaces/Property/response/propertiesResponse';
 import { PropertiesService } from 'src/app/services/properties.service';
+import { ResidenceSharedService } from 'src/app/shared/residence-shared.service';
 
 @Component({
   selector: 'app-catalogo',
@@ -12,21 +15,26 @@ import { PropertiesService } from 'src/app/services/properties.service';
   styleUrls: ['./catalogo.component.css'],
 })
 export class CatalogoComponent implements OnInit {
-  residences!: PaginationResponse<PropertiesResponseModel>
+  residences!: PaginationResponse<PropertiesResponseModel>;
   filters: PropertiesRequestModel = {
     pageNumber: 1,
-    pageSize: 10,
+    pageSize: 4,
     asc: true,
     orderBy: 'createdAt',
   };
 
-  constructor(public dialog: MatDialog, private service: PropertiesService) {}
+  haMaisRegistros = true;
+
+  constructor(public dialog: MatDialog,
+     private service: PropertiesService, 
+     private sharedService: ResidenceSharedService,
+     private router: Router) {}
 
   ngOnInit(): void {
     this.getAllResidencesCatalog();
   }
 
-  getAllResidencesCatalog(){
+  getAllResidencesCatalog() {
     this.service.getProperties(this.filters).subscribe((residences) => {
       this.residences = residences;
     });
@@ -43,17 +51,54 @@ export class CatalogoComponent implements OnInit {
       const rect = buttonElement.getBoundingClientRect();
       // Configura a posição do modal baseado na posição do botão
       dialogConfig.position = {
-        top: `5px`,
-        left: `10px`,
+        top: `100px`,
+        left: `400px`,
+        right: `100px`,
       };
     }
 
     dialogConfig.width = '1800px';
 
-    this.dialog.open(FilterComponent, dialogConfig);
+    const dialogRef = this.dialog.open(FilterComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.residences = result;
+      }
+    });
+
   }
 
   close() {
     this.dialog.closeAll();
+  }
+
+  editar(residence: PropertiesResponseModel) {
+    console.log(residence)
+    this.sharedService.changeResidence(residence);
+    this.router.navigate(['/cadastrar']);
+  }
+
+  inativar(residence: PropertiesResponseModel) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.service.deleteProperty(residence.id).subscribe(() => {
+          this.getAllResidencesCatalog();
+        });
+      }
+    });
+  }
+
+  carregarMaisRegistros(){
+    this.filters.pageNumber++;
+    this.service.getProperties(this.filters).subscribe((residences) => {
+      if(residences.items.length > 0){
+        this.residences.items = this.residences.items.concat(residences.items);
+      }else{
+        this.haMaisRegistros = false;
+      }
+    });
   }
 }

@@ -20,8 +20,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpInterceptorService } from './hooks/useHttpInterceptor';
 import { MatCardModule } from '@angular/material/card';
-import { CurrencyMaskModule } from "ng2-currency-mask";
-
+import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { NgxMaskModule } from 'ngx-mask';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatMenuModule } from '@angular/material/menu';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { BotaoCarregarMaisComponent } from './components/botao-carregar-mais/botao-carregar-mais.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +34,8 @@ import { CurrencyMaskModule } from "ng2-currency-mask";
     CatalogoComponent,
     CadastroResidenciasComponent,
     FilterComponent,
+    ConfirmDialogComponent,
+    BotaoCarregarMaisComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +52,9 @@ import { CurrencyMaskModule } from "ng2-currency-mask";
     MatButtonModule,
     HttpClientModule,
     CurrencyMaskModule,
+    NgxMaskModule.forRoot(),
+    MatSnackBarModule,
+    MatMenuModule,
   ],
   providers: [
     // {

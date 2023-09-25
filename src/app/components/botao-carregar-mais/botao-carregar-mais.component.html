@@ -1,0 +1,6 @@
+<div class="center" *ngIf="haMaisRegistros; else semMaisPensamentos">
+  <button class="botao carregar-mais">Carregar mais</button>
+</div>
+<ng-template #semMaisPensamentos>
+  <p class="mensagem-center">Não há mais registros para carregar.</p>
+</ng-template>

@@ -4,8 +4,8 @@
 }
 
 .residence-card {
+  position: relative;
   display: flex;
-  align-items: center;
   margin-bottom: 1rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 1rem;
@@ -13,7 +13,7 @@
   transition: transform 0.3s ease-in-out;
 }
 
-.residence-card img {
+.residence-image {
   width: 300px;
   height: 200px;
   object-fit: cover;
@@ -74,10 +74,6 @@
   background-color: #cd5d67;
 }
 
-.cdk-overlay-container {
-  z-index: 1000 !important;
-}
-
 .no-residences {
   text-align: center;
   margin-top: 2rem;
@@ -90,4 +86,16 @@
   display: flex;
   align-items: flex-start;
   margin-left: 1rem;
+}
+
+.text-end {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+}
+
+.residence-description {
+    margin-top: 1.2rem;
+  font-weight: 500;
+  font-size: 1.2rem;
 }

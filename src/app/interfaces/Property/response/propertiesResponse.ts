@@ -3,6 +3,7 @@ import { RealEstateModel } from "../../RealEstate/response/realEstateResponse";
 import { CityModel } from "../../Location/cityModel";
 
 export interface PropertiesResponseModel {
+    id:any
     description: string;
     value: number; 
     propertyType: EnumPropertyType; 

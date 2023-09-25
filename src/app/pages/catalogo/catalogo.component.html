@@ -6,29 +6,56 @@
     </button>
   </div>
 
-  <div *ngIf="residences.items.length > 0; else noResidences">
-    <ng-container
-      *ngFor="let residence of residences.items"
-      class="residence-card"
-    >
-      <img
-        src="../../../assets/foto1.jpg"
-        alt="Imagem da Residência"
-      />
-      <div class="residence-info">
-        <span class="price">{{ residence?.value }}</span>
-        <div class="details">
-          <div class="info-item">Quartos: {{ residence?.rooms }}</div>
-          <div class="info-item">M²: {{ residence?.areaM2 }} m²</div>
-          <div class="info-item">{{ residence?.city?.name }}</div>
+  <div *ngIf="residences && residences.items.length > 0; else noResidences">
+    <ng-container *ngFor="let residence of residences.items">
+      <div class="residence-card row">
+        <div class="col-md-4">
+          <img
+            src="../../../assets/foto1.jpg"
+            alt="Imagem da Residência"
+            class="residence-image img-fluid"
+          />
+        </div>
+        <div class="col-md-3">
+          <div class="residence-description">
+            {{ residence?.description }}
+          </div>
+        </div>
+        <div class="residence-info col-md-5">
+          <span class="price">{{ residence?.value | currency : "BRL" }}</span>
+          <div class="details">
+            <div class="info-item">Quartos: {{ residence?.rooms }}</div>
+            <div class="info-item">M²: {{ residence?.areaM2 }} m²</div>
+            <div class="info-item">
+              {{ residence?.city?.name }} -
+              {{ residence?.city?.state?.initials }}
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 text-end">
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="editar(residence)">Editar</button>
+            <button mat-menu-item (click)="inativar(residence)">
+              Inativar
+            </button>
+          </mat-menu>
         </div>
       </div>
     </ng-container>
   </div>
-</div>
 
-<ng-template #noResidences>
-  <div class="no-residences">
-    <h2>Não Há registros para ser mostrado.</h2>
-  </div>
-</ng-template>
+  <app-botao-carregar-mais
+    [haMaisRegistros]="haMaisRegistros"
+    (click)="carregarMaisRegistros()"
+  >
+  </app-botao-carregar-mais>
+
+  <ng-template #noResidences>
+    <div class="no-residences">
+      <h2>Não Há registros para ser mostrado.</h2>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,22 @@
+.carregar-mais {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.center {
+  display: flex;
+  justify-content: center;
+}
+.mensagem-center {
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.botao {
+    background-color: #cd5d67;
+    color: white;
+    height: 47px;
+    width: 180px;
+    cursor: pointer;
+    border-radius: 15px;
+}

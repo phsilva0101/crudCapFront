@@ -13,7 +13,7 @@ export interface PropertiesRequestModel extends BaseModel {
   garageSpaces?: number;
   rooms?: number;
   suites?: number;
-  valueInitial?: number;
+  valueStart?: number;
   valueEnd?: number;
 }
 

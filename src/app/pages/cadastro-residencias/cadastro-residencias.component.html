@@ -28,7 +28,11 @@
       <div class="col-md-4">
         <mat-form-field appearance="fill" class="custom-input-size">
           <mat-label>Property Type</mat-label>
-          <mat-select panelClass="panel-select" formControlName="propertyType">
+          <mat-select
+            panelClass="panel-select"
+            formControlName="propertyType"
+            [disabled]="isEdit"
+          >
             <mat-option *ngFor="let type of propertyTypes" [value]="type.value">
               {{ type.viewValue }}
             </mat-option>
@@ -59,6 +63,7 @@
             formControlName="areaM2"
             class="right-align"
             type="number"
+            [disabled]="isEdit"
           />
           <span matSuffix>m²</span>
         </mat-form-field>
@@ -76,19 +81,19 @@
 
     <div class="row">
       <div class="col-md-4">
-        <mat-slide-toggle formControlName="hasGarage" color="primary">
+        <mat-slide-toggle formControlName="hasGarage" color="primary" [disabled]="isEdit">
           Has Garage?
         </mat-slide-toggle>
       </div>
 
       <div class="col-md-4">
-        <mat-slide-toggle formControlName="hasPool" color="primary">
+        <mat-slide-toggle formControlName="hasPool" color="primary" [disabled]="isEdit">
           Has Pool?
         </mat-slide-toggle>
       </div>
 
       <div class="col-md-4">
-        <mat-slide-toggle formControlName="isParticular" color="primary">
+        <mat-slide-toggle formControlName="isParticular" color="primary" [disabled]="isEdit">
           Is Particular?
         </mat-slide-toggle>
       </div>
@@ -102,7 +107,7 @@
       <div class="col-md-4">
         <mat-form-field appearance="fill" class="custom-input-size">
           <mat-label>ZipCode</mat-label>
-          <input matInput formControlName="zipCode" />
+          <input matInput formControlName="zipCode" mask="00000-000" [disabled]="isEdit" />
         </mat-form-field>
       </div>
 
@@ -112,6 +117,8 @@
           class="button-zipCode"
           color="primary"
           type="submit"
+          (click)="searchZipCode()"
+          disabled={{isEdit}}
         >
           Buscar
         </button>
@@ -122,31 +129,53 @@
       <div class="col-md-4">
         <mat-form-field appearance="fill" class="custom-input-size">
           <mat-label>Street</mat-label>
-          <input matInput formControlName="street" />
+          <input matInput formControlName="street" [disabled]="isEdit"/>
         </mat-form-field>
       </div>
       <div class="col-md-2">
         <mat-form-field appearance="fill" class="custom-input-size">
           <mat-label>Number</mat-label>
-          <input matInput formControlName="number" />
+          <input matInput formControlName="number" [disabled]="isEdit"/>
         </mat-form-field>
       </div>
       <div class="col-md-3">
         <mat-form-field appearance="fill" class="custom-input-size">
           <mat-label>Neighborhood</mat-label>
-          <input matInput formControlName="neighborhood" />
+          <input matInput formControlName="neighborhood" [disabled]="isEdit" />
         </mat-form-field>
       </div>
       <div class="col-md-3">
         <mat-form-field appearance="fill" class="custom-input-size">
           <mat-label>Complement</mat-label>
-          <input matInput formControlName="complement" />
+          <input matInput formControlName="complement" [disabled]="isEdit" />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <mat-form-field appearance="fill" class="custom-input-size">
+          <mat-label>City</mat-label>
+          <input matInput formControlName="city" [disabled]="isEdit"/>
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="fill" class="custom-input-size">
+          <mat-label>State</mat-label>
+          <input matInput formControlName="state" [disabled]="isEdit"/>
         </mat-form-field>
       </div>
     </div>
   </fieldset>
 
   <div class="button-container">
-    <button mat-raised-button (click)="save()" color="primary" class="submit-button" type="submit">Submit</button>
+    <button
+      mat-raised-button
+      (click)="save()"
+      color="primary"
+      class="submit-button"
+      type="submit"
+    >
+     Save
+    </button>
   </div>
 </form>
